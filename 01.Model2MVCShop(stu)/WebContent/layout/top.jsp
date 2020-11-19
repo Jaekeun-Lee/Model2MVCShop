@@ -29,7 +29,7 @@
 	          <%
 	          	if(vo == null) {
 	          %>
-	              <a href="/user/loginView.jsp" target="rightFrame">login</a>   
+	              <a href="/user/loginView.jsp" target="rightFrame">loginViewGitTest</a>   
 	          <%
 	          	}
 	          %>        
