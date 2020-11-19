@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /*
  * FileName : PojoAspectJ.java
- *	:: XML 에 선언적으로 aspect 의 적용   
+ *	:: XML 에 선언적으로 aspect 의 적용   ==> Annotation 기반으로 수정
   */
 @Aspect
 public class LogAspectJ {
