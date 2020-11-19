@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<Context>
+	<Resource name="jdbc/myoracle" auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" type="javax.sql.DataSource"
+		url="jdbc:oracle:thin:@127.0.0.1:1521:xe" username="hr" password="hr"
+		maxActiver="20" maxIdle="10" maxWait="-1">
+	</Resource>
+</Context>
