@@ -29,7 +29,7 @@ public class ProductTestApp {
 	@Qualifier("productDaoImpl")
 	private ProductDao productDAO;
 
-	//@Test
+	// @Test
 	public void testGetProduct() throws Exception {
 
 		Product product = new Product("5번 테스트 앱", "5번 테스트 앱 디테일", "20201114", 55555, "5번테스트앱사진", "0");
@@ -48,36 +48,36 @@ public class ProductTestApp {
 
 	}
 
-	//@Test
+	// @Test
 	public void testGetProductList() throws Exception {
-		
+
 		Search search = new Search();
 		search.setStartRowNum(1);
 		search.setEndRowNum(3);
 		Map<String, Object> map = productService.getProductList(search);
-		
+
 		List<Object> list = (List<Object>) map.get("list");
-		System.out.println("총 검색 갯수 :: "+map.get("totalCount"));
-		
+		System.out.println("총 검색 갯수 :: " + map.get("totalCount"));
+
 		Assert.assertEquals(3, list.size());
-		
+
 	}
-	
+
 	@Test
 	public void testGetOrderedProductList() throws Exception {
-		
-		//판매중인 상품 테스트
+
+		// 판매중인 상품 테스트
 		Search search = new Search();
 		search.setStartRowNum(1);
 		search.setEndRowNum(3);
 		search.setOrderCondition("0");
 		Map<String, Object> map = productService.getProductList(search);
-		
+
 		List<Object> list = (List<Object>) map.get("list");
-		System.out.println("총 검색 갯수 :: "+map.get("totalCount"));
-		
+		System.out.println("총 검색 갯수 :: " + map.get("totalCount"));
+
 		Assert.assertEquals(3, list.size());
-		
+
 	}
 
 }// end of class
