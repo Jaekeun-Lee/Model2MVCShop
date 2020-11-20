@@ -61,6 +61,5 @@ public class ProductTestApp {
 		search.setOrderCondition("3");
 		System.out.println(":: " + productService.getProductList(search));
 
-
 	}// end of main
 }// end of class
