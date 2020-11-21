@@ -53,14 +53,16 @@ public class Search {
 	public void setOrderCondition(String orderCondition) {
 		this.orderCondition = orderCondition;
 	}
+	
+	public int getStartRowNum() {
+		return (getCurrentPage()-1)*getPageSize()+1;
+	}
 
 	public int getEndRowNum() {
 		return getCurrentPage()*getPageSize();
 	}
 	
-	public int getStartRowNum() {
-		return (getCurrentPage()-1)*getPageSize()+1;
-	}
+	
 	
 	@Override
 	public String toString() {
