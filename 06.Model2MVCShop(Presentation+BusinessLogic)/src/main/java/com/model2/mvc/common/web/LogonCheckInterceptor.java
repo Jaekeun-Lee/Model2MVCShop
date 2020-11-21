@@ -72,5 +72,6 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 			System.out.println("[ LogonCheckInterceptor end........]\n");
 			return false;
 		}
+		
 	}
 }//end of class

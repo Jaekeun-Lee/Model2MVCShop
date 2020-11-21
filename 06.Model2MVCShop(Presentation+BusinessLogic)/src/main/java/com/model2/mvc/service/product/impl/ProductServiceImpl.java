@@ -42,7 +42,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Map<String , Object > getProductList(Search search) throws Exception {
 		List<Object> list = productDao.getProductList(search);
-		int totalCount = ((Product)list.get(0)).getCount();
+		int totalCount = 0;
+		if(list.size()>0) totalCount=((Product)list.get(0)).getCount();
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list );
 		map.put("totalCount", new Integer(totalCount));
