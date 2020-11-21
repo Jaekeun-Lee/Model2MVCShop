@@ -43,9 +43,9 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<!-- get 으로 시작된는 Method에 적용 transaction 규칙 -->				
-			<tx:method 	name="get*" 			propagation="REQUIRED"	read-only="true" />
+			<tx:method 	name="get*" 	propagation="REQUIRED"	read-only="true" />
 			<!-- add 으로 시작된는 Method에 적용 transaction 규칙 -->		
-			<tx:method	name="add*"	 		propagation="REQUIRED"/>
+			<tx:method	name="add*"	 	propagation="REQUIRED"/>
 			<tx:method	name="update*"	propagation="REQUIRED"/>
 			<!--모든 Method에 적용 transaction 규칙 -->		
 			<!-- <tx:method	name="*"	 />-->	
@@ -54,8 +54,7 @@
 
 	<!-- AOP : pointcut / advisor 설정 -->
 	<aop:config>
-		<aop:pointcut 	id="requiredTx"
-									expression="execution(* com.model2.mvc.service..*ServiceImpl.*(..) )" />
+		<aop:pointcut 	id="requiredTx" expression="execution(* com.model2.mvc.service..*ServiceImpl.*(..) )" />
 		<aop:advisor 	advice-ref="txAdvice"  pointcut-ref="requiredTx"  />
 	</aop:config>
 
