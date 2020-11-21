@@ -2,9 +2,8 @@ package com.model2.mvc.service.domain;
 
 import java.sql.Date;
 
-
 public class Product {
-	
+
 	private int prodNo;
 	private String prodName;
 	private String prodDetail;
@@ -14,12 +13,12 @@ public class Product {
 	private Date regDate;
 	private String proTranCode;
 	private int count;
-	
-	public Product(){
+
+	public Product() {
 	}
-	
+
 	public Product(String prodName, String prodDetail, String manuDate, int price, String fileName,
-			 String proTranCode) {
+			String proTranCode) {
 		super();
 		this.prodName = prodName;
 		this.prodDetail = prodDetail;
