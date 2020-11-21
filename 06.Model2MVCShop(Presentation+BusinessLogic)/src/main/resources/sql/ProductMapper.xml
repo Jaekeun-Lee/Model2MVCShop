@@ -57,9 +57,9 @@
 		<where>
 			pd.prod_no=ts.prod_no(+)
 			
-			<if test="searchCondition != ''">
-				<if test="searchCondition == 1">AND prod_no= #{searchKeyword} </if>
-				<if test="searchCondition == 2">AND prod_name LIKE '%#{searchKeyword}' </if>
+			<if test="searchKeyword != ''">
+				<if test="searchCondition == 1">AND pd.prod_no= #{searchKeyword} </if>
+				<if test="searchCondition == 2">AND prod_name LIKE '%'||#{searchKeyword}||'%' </if>
 			</if>
 			<if test="orderCondition != ''">
 				<if test="orderCondition == 1 ">AND ts.tran_status_code IS NULL </if>
