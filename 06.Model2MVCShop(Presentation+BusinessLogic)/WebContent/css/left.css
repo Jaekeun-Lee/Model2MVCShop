@@ -1,0 +1,85 @@
+
+/* 이미지 보더라인 삭제 */
+IMG {  border-style: none}
+
+/* 스크롤바 정의 */
+BODY {
+scrollbar-3dlight-color: #ffffff;
+scrollbar-highlight-color: #ffffff;
+scrollbar-face-color: #DEE7EB;
+scrollbar-arrow-color: #6F9BAA;
+scrollbar-track-color: #F7F7F7;
+scrollbar-darkshadow-color: #ffffff;
+scrollbar-shadow-color: #B8C4C5;}
+
+
+a.menu		{ font-size: 9pt; font-family: 굴림체; color: #ff0000; text-decoration: none; }
+
+/* 링크 속성 */
+A.:link {  color: #333333 ; text-decoration: none; cursor:hand}
+A.:hover {  color: #347BD9 ;text-decoration: none; }
+A.:active {  color: #347BD9 ; text-decoration: none;}
+A.:visited {  color: #333333 ; text-decoration: none;}
+A.: { onfocus : "this.blur();" }
+
+
+/* 전체 텍스트 속성 */
+BODY, TABLE, TR, TD, SELECT,INPUT,DIV,SPAN,FORM,TEXTAREA
+{ font-family: "MS Gothic"; font-size: 12px; color: #333333; }
+
+/* 타이틀1 배경이미지와 텍스트 속성 */
+ .Depth01 { 
+		font-size: 14px; 
+	color: #ffffff;
+	font-weight:bold;
+	line-height: 26px;
+	text-indent: 15px;
+	background-image: url(/sample/images/left/leftMenuDep01Bg.gif);
+	background-repeat:no-repeat;
+   	}
+ 
+ 	 /* 타이틀2 배경이미지와 텍스트 속성 - 마우스 이벤트가 없을때와 기본일때.*/
+	.Depth02on { 
+	font-size: 12px; 
+	line-height: 25px;
+	color: #505050;
+	font-weight:normal;
+	text-indent: 19px;
+	background-image: url(/sample/images/left/leftMenuDep02_on.gif);
+	background-repeat:no-repeat;
+  	}
+  
+   /* 타이틀2 배경이미지와 텍스트 속성 - 마우스 이벤트가 없을때와 기본일때.*/
+	.Depth02off { 
+	 font-size: 12px; 
+	line-height: 25px;
+	color: #505050;
+	font-weight:normal;
+	text-indent: 19px;
+	background-image: url(/sample/images/left/leftMenuDep02_off.gif);
+	background-repeat:no-repeat;
+  	}
+
+/* 타이틀3 배경이미지와 텍스트 속성 */
+	.Depth03 { 
+	font-size: 12px; 
+	line-height: 20px;
+	color: #505050;
+	font-weight:normal;
+	text-indent: 14px;
+	background-image: url(/sample/images/left/leftMenuDep03Bg.gif);
+	background-repeat:no-repeat;
+ 	}
+
+	.DepthEnd {
+background-image: url(/sample/images/left/space_line.gif);
+line-height: 5px;
+background-repeat:no-repeat;
+	}
+	
+/* 타이틀1 배경이미지와 텍스트 속성 */	
+.layer_submenu_bg {
+	background-image:  url(/sample/images/left/menuLayerBg.gif);
+	background-position: right;
+	background-repeat: repeat;
+	text-align: center;
