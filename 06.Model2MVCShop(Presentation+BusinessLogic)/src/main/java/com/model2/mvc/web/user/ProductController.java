@@ -64,7 +64,7 @@ public class ProductController {
 		Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit,
 				search.getPageSize());
 		System.out.println("ListProductAction ::" + resultPage);
-
+		System.out.println("ListProductAction ::" + search);
 		model.addAttribute("menu", menu);
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("resultPage", resultPage);
@@ -79,7 +79,6 @@ public class ProductController {
 
 		System.out.println("/getProduct.do");
 
-		System.out.println("/getProduct.do");
 		Product product = productService.getProduct(prodNo);
 
 		model.addAttribute("product", product);
