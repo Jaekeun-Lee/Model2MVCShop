@@ -85,15 +85,15 @@
 							</td>
 							<td></td>
 							<td align="left">
-								<a href="/getUser.do?userId=${ purchase.buyer.userId }">${ purchase.buyer.userId }</a>
+								<a href="/getUser.do?userId=${ user.userId }">${ user.userId }</a>
 							</td>
 							<td></td>
 							<td align="left">
-								${ purchase.buyer.userName }
+								${ user.userName }
 							</td>
 							<td></td>
 							<td align="left">
-								${ purchase.buyer.phone }
+								${ purchase.receiverPhone }
 							</td>
 							<td></td>
 							<td align="left">
