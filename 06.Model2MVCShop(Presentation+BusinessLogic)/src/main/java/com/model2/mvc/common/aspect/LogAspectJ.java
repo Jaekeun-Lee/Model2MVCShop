@@ -11,7 +11,7 @@ public class LogAspectJ {
 		System.out.println("\nCommon :: "+this.getClass()+"\n");
 	}
 	
-	@Around("execution(* com.model2.mvc.service..*Impl.*(..) )")
+	@Around("execution(* com.model2.mvc.service..*DAOImpl.*(..) )")
 	public Object invoke(ProceedingJoinPoint joinPoint) throws Throwable {
 			
 		System.out.println("");

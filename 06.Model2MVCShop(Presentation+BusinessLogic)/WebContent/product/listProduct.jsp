@@ -99,7 +99,7 @@
 						</td>
 						
 						<td colspan="100%" style="text-align: right;">
-							<input type="hidden" id="orderCondition" name="orderCondition" value="" />
+							<input type="hidden" id="orderCondition" name="orderCondition" value="${ search.orderCondition }" />
 							정렬 기준 : 
 							<a href="javascript:fncOrderList('${menu eq 'manage'? '2' : '1'}');" >${menu eq 'manage'? '결제완료 된' : '구매가능한'} 상품만 보기</a>
 							|

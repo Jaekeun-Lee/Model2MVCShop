@@ -64,7 +64,7 @@ public class ProductController {
 		Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit,
 				search.getPageSize());
 		System.out.println("ListProductAction ::" + resultPage);
-
+		System.out.println("ListProductAction ::" + search);
 		model.addAttribute("menu", menu);
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("resultPage", resultPage);
@@ -79,14 +79,13 @@ public class ProductController {
 
 		System.out.println("/getProduct.do");
 
-		System.out.println("/getProduct.do");
 		Product product = productService.getProduct(prodNo);
 
 		model.addAttribute("product", product);
 		setCookie(request, response);
 
 		
-		String viewName = menu.equals("manage")?"forward:/product/getProduct.jsp":"forward:/product/updateProductView.jsp";
+		String viewName = menu.equals("manage")?"forward:/product/updateProductView.jsp":"forward:/product/getProduct.jsp";
 
 		return viewName;
 	}
@@ -101,6 +100,18 @@ public class ProductController {
 		model.addAttribute("product", product);
 		
 		return "forward:/product/updateProductView.jsp";
+	}
+	
+	@RequestMapping("/updateProduct.do")
+	public String updateProduct( @ModelAttribute("product") Product product , Model model) throws Exception {
+		
+		productService.updateProduct(product);
+		
+		product = productService.getProduct(product.getProdNo());
+		model.addAttribute("product", product);
+		
+		return "forward:/product/getProduct.jsp";
+		
 	}
 
 	private void setCookie(HttpServletRequest request, HttpServletResponse response) {
