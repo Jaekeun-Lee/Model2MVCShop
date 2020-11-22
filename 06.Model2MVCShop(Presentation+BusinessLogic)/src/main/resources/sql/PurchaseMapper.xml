@@ -29,13 +29,13 @@
 	</insert>
 	
 	<select id="findPurchase" parameterType="int" resultMap="purchaseSelectMap">
-		SELECT tran_no , prod_no , buyer_id, payment_option , receiver_name, receiver_phone, demailaddr, dlvy_request, tran_status_code, order_date, dlvy_date
+		SELECT tran_no , prod_no , buyer_id, payment_option , receiver_name, receiver_phone, demailaddr, dlvy_request, TRIM(tran_status_code) tran_status_code, order_date, dlvy_date
 		FROM transaction 
 		WHERE tran_no = #{value}
 	</select>
 	
 	<select id="findPurchase2" parameterType="int" resultMap="purchaseSelectMap">
-		SELECT tran_no, tran_status_code
+		SELECT tran_no, TRIM(tran_status_code) tran_status_code
 		FROM transaction 
 		WHERE prod_no = #{value}
 	</select>
@@ -43,7 +43,7 @@
 	<select id="getPurchaseList" parameterType="java.util.List" resultMap="purchaseSelectMap">
 		
 		SELECT purchase.* 
-		FROM ( SELECT ROW_NUMBER() OVER(order by user_id) rn , ts.tran_no, u.user_id, NVL(ts.tran_status_code,0) tran_code, COUNT(*)OVER() count 
+		FROM ( SELECT ROW_NUMBER() OVER(order by user_id) rn , ts.tran_no, u.user_id, TRIM(NVL(ts.tran_status_code,0)) tran_status_code, COUNT(*)OVER() count 
 			   FROM users u, transaction ts 
 			   WHERE u.user_id = ts.buyer_id AND u.user_id = #{list[1]}) purchase 
 		WHERE rn BETWEEN #{list[0].startRowNum} AND #{list[0].endRowNum} 
