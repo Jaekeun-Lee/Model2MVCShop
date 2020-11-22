@@ -86,7 +86,7 @@ public class ProductController {
 		setCookie(request, response);
 
 		
-		String viewName = menu.equals("manage")?"forward:/product/getProduct.jsp":"forward:/product/updateProductView.jsp";
+		String viewName = menu.equals("manage")?"forward:/product/updateProductView.jsp":"forward:/product/getProduct.jsp";
 
 		return viewName;
 	}
@@ -101,6 +101,18 @@ public class ProductController {
 		model.addAttribute("product", product);
 		
 		return "forward:/product/updateProductView.jsp";
+	}
+	
+	@RequestMapping("/updateProduct.do")
+	public String updateProduct( @ModelAttribute("product") Product product , Model model) throws Exception {
+		
+		productService.updateProduct(product);
+		
+		product = productService.getProduct(product.getProdNo());
+		model.addAttribute("product", product);
+		
+		return "forward:/product/getProduct.jsp";
+		
 	}
 
 	private void setCookie(HttpServletRequest request, HttpServletResponse response) {
