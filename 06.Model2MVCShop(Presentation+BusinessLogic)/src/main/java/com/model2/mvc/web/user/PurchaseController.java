@@ -89,12 +89,7 @@ public class PurchaseController {
 		
 		String buyerId = ((User)session.getAttribute("user")).getUserId();
 		Map<String, Object> map = purchaseService.getPurchaseList(search, buyerId);
-		
-		System.out.println("search.getCurrentPage() == "+search.getCurrentPage());
-		System.out.println("((Integer)map.get(\"totalCount\")).intValue() =="+((Integer)map.get("totalCount")).intValue());
-		System.out.println("pageUnit == "+pageUnit);
-		System.out.println("pageSize == "+pageSize);
-		
+
 		Page resultPage = new Page( search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 
 		System.out.println("ListPurchase ::" + resultPage);
