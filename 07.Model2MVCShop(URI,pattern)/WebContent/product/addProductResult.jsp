@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=euc-kr"%>
 <%@ page pageEncoding="EUC-KR"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,12 +55,24 @@
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 			</tr>
 			<tr>
-				<td width="104" class="ct_write">상품이미지 <img
-					src="/images/ct_icon_red.gif" width="3" height="3"
-					align="absmiddle" />
-				</td>
+				<td width="104" class="ct_write">상품이미지</td>
 				<td bgcolor="D6D6D6" width="1"></td>
-				<td class="ct_write01">${ product.fileName }</td>
+				<td class="ct_write01">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr> 
+							<td height="26">
+								<c:choose>
+									<c:when test="${!empty product.fileName}">
+										<img src="../images/uploadFiles/${product.fileName}"/>
+									</c:when>
+									<c:otherwise>
+										<img src="../images/logo-spring.png"/>
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 			<tr>
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>

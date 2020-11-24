@@ -1,5 +1,6 @@
 package com.model2.mvc.web.product;
 
+import java.io.File;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model2.mvc.common.Page;
@@ -30,27 +34,47 @@ public class ProductController {
 	@Qualifier("productServiceImpl")
 	private ProductService productService;
 
-	public ProductController() {
-		System.out.println(this.getClass());
-	}
-
 	@Value("#{commonProperties['pageUnit'] ?: 5}")
 	int pageUnit;
 
 	@Value("#{commonProperties['pageSize'] ?: 5}")
 	int pageSize;
+	
+	@Value("#{commonProperties['path']}")
+	String path;
+	
+	public ProductController() {
+		System.out.println(this.getClass());
+		
+	}
 
 	@RequestMapping(value="addProduct", method = RequestMethod.GET)
 	public ModelAndView addProduct()  {
 		System.out.println("addProduct : GET");
-
+		System.out.println(path);
 		return new ModelAndView("forward:/product/addProductView.jsp");
 	}
 
 	
 	@RequestMapping(value="addProduct", method = RequestMethod.POST)
-	public ModelAndView addProduct(@ModelAttribute("product") Product product) throws Exception {
+	public ModelAndView addProduct(@ModelAttribute("product") Product product, MultipartHttpServletRequest request) throws Exception {
 
+		System.out.println(path);
+		Map<String, MultipartFile> files = request.getFileMap();
+		CommonsMultipartFile cmf  = (CommonsMultipartFile) files.get("uploadFile");
+		
+		String uploadPath = path + cmf.getOriginalFilename();
+		
+		File file = new File(uploadPath);
+		System.out.println(uploadPath);
+		
+		cmf.transferTo(file);
+		
+		product.setFileName(cmf.getOriginalFilename());
+		/*
+		 * MultipartFile uploadFile = product.getFileName(); if(uploadFile != null) {
+		 * uploadFile.transferTo(new File(path)); }
+		 */
 		System.out.println("addProduct : POST");
 		productService.addProduct(product);
 		
@@ -145,6 +169,7 @@ public class ProductController {
 					history = newHistory+cookie.getValue();
 				}
 				cookie.setValue(history);
+				cookie.setMaxAge(-1);
 				response.addCookie(cookie);
 				break;
 			} else {

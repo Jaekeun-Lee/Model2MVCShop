@@ -73,7 +73,21 @@
 					align="absmiddle" />
 				</td>
 				<td bgcolor="D6D6D6" width="1"></td>
-				<td class="ct_write01">${ product.fileName }</td>
+				<td class="ct_write01">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr> 
+							<td height="26">
+								<c:if test="${!empty product.fileName}">
+									<img src="../images/uploadFiles/${product.fileName}"/>
+								</c:if>
+								<c:if test="${empty product.fileName}">
+								<img src="../images/logo-spring.png"/>
+								</c:if>
+		
+							</td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 			<tr>
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>

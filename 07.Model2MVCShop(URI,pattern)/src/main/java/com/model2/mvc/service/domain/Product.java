@@ -2,6 +2,7 @@ package com.model2.mvc.service.domain;
 
 import java.sql.Date;
 
+
 public class Product {
 
 	private int prodNo;
@@ -13,19 +14,8 @@ public class Product {
 	private Date regDate;
 	private String proTranCode;
 	private int count;
-
+	
 	public Product() {
-	}
-
-	public Product(String prodName, String prodDetail, String manuDate, int price, String fileName,
-			String proTranCode) {
-		super();
-		this.prodName = prodName;
-		this.prodDetail = prodDetail;
-		this.manuDate = manuDate;
-		this.price = price;
-		this.fileName = fileName;
-		this.proTranCode = proTranCode;
 	}
 
 	public int getProdNo() {
