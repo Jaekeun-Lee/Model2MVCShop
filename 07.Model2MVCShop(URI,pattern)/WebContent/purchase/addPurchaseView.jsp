@@ -21,7 +21,7 @@
 
 <body>
 
-	<form name="addPurchase" method="post" action="/purchase/addPurchase">
+	<form name="addPurchase" method="post" action="/addPurchase.do">
 
 		<table width="100%" height="37" border="0" cellpadding="0"
 			cellspacing="0">
@@ -32,7 +32,7 @@
 					style="padding-left: 10px;">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td width="93%" class="ct_ttl01">구매정보입력</td>
+							<td width="93%" class="ct_ttl01">상품상세조회</td>
 							<td width="20%" align="right">&nbsp;</td>
 						</tr>
 					</table>
@@ -42,7 +42,8 @@
 			</tr>
 		</table>
 
-		<input type="hidden" name="prodNo" value="${ product.prodNo }" />
+		<input type="hidden" name="prodNo"
+			value="${ product.prodNo }" />
 
 		<table width="600" border="0" cellspacing="0" cellpadding="0"
 			align="center" style="margin-top: 13px;">

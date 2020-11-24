@@ -29,7 +29,7 @@
 			for (int i = 0; i < h.length; i++) {
 				if (!h[i].equals("null")) {
 %>
-<a href="/product/getProduct/search/<%=h[i]%>"
+<a href="/getProduct.do?prodNo=<%=h[i]%>&menu=search"
 	target="rightFrame"><%=h[i]%></a>
 <br>
 <%
