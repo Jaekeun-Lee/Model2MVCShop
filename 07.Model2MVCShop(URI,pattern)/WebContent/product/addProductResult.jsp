@@ -90,14 +90,6 @@
 			<tr>
 				<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 			</tr>
-			<tr>
-				<td width="104" class="ct_write">등록일자</td>
-				<td bgcolor="D6D6D6" width="1"></td>
-				<td class="ct_write01"> ${ product.regDate }</td>
-			</tr>
-			<tr>
-				<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-			</tr>
 		</table>
 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"
