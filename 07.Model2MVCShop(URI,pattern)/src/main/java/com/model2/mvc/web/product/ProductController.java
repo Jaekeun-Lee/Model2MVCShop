@@ -22,7 +22,6 @@ import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.product.ProductService;
 
-//==> 회원관리 Controller
 @Controller
 @RequestMapping("/product/*")
 public class ProductController {
