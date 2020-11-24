@@ -1,4 +1,4 @@
-package com.model2.mvc.web.user;
+package com.model2.mvc.web.product;
 
 import java.util.Map;
 
