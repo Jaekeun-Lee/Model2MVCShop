@@ -130,22 +130,31 @@ public class ProductController {
 
 		Cookie[] cookies = request.getCookies();
 		String history = "";
-		String prodNo = request.getParameter("prodNo");
-		System.out.println("============"+prodNo);
+		
+		String newHistory = request.getParameter("prodNo")+",";
+		
 		for (Cookie cookie : cookies) {
+			System.out.println("쿠키포문 이름:"+cookie.getName());
 			if (cookie.getName().equals("history")) {
-				if (cookie.getValue().contains(prodNo)) {
+				System.out.println("history쿠키있음");
+				if (cookie.getValue().contains(newHistory)) {
+					System.out.println("같은이름가진 쿠키값있음");
 					history = cookie.getValue();
 				} else {
-					history = prodNo + "," + cookie.getValue();
+					System.out.println("같은이름가진 쿠키값없음");
+					history = newHistory+cookie.getValue();
 				}
+				cookie.setValue(history);
+				response.addCookie(cookie);
+				break;
 			} else {
-				history = prodNo + ",";
+				System.out.println("history쿠키없음");
+				response.addCookie(new Cookie("history", newHistory));
+				System.out.println("history쿠키생성");
 			}
 		}
-		
 		System.out.println("===========history"+history);
-		response.addCookie(new Cookie("history", history));
+		
 	}
 
 }
