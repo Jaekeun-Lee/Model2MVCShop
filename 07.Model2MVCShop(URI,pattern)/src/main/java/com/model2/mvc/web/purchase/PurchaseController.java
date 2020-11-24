@@ -121,7 +121,7 @@ public class PurchaseController {
 	@RequestMapping("updateTranCode")
 	public ModelAndView updateTranCode(@ModelAttribute("purchase") Purchase purchase) throws Exception {
 		purchaseService.updateTranCode(purchase);
-		return new ModelAndView("redirect:/listPurchase.do");
+		return new ModelAndView("redirect:/purchase/listPurchase.do");
 	}
 	
 	
@@ -130,7 +130,7 @@ public class PurchaseController {
 		Purchase purchase = purchaseService.getPurchase2(prodNo);
 		purchase.setTranCode(tranCode);
 		purchaseService.updateTranCode(purchase);
-		return new ModelAndView("redirect:/listProduct.do?menu=manage&currentPage="+currentPage);
+		return new ModelAndView("redirect:/product/listProduct?menu=manage&currentPage="+currentPage);
 	}
 	
 	
