@@ -24,5 +24,9 @@
 		<context:exclude-filter type="annotation" 	expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>				
 	
-	
+	<bean id="spring.RegularCommonsMultipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000" />
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>	
 </beans>
