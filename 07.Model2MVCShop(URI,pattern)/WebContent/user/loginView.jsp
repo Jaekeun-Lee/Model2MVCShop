@@ -29,6 +29,12 @@
 	window.onload = function(){
 		document.getElementById("userId").focus();
 	}
+	
+	function enterkey() {
+        if (window.event.keyCode == 13) {
+        	fncLogin();
+        }
+	}
 
 </script>
 
@@ -81,7 +87,7 @@
                 </td>
                 <td height="30">
                   <input 	type="text" name="userId"  class="ct_input_g" 
-                  				style="width:180px; height:19px"  maxLength='50'/>          
+                  				style="width:180px; height:19px"  maxLength='50' onkeyup="enterkey();"/>          
           		</td>
                 <td width="20" height="30">&nbsp;</td>
               </tr>
@@ -92,7 +98,7 @@
                 </td>
                 <td height="30">                    
                     <input 	type="password" name="password" class="ct_input_g" 
-                    				style="width:180px; height:19px"  maxLength="50" />
+                    				style="width:180px; height:19px"  maxLength="50" onkeyup="enterkey();" />
                 </td>
                 <td width="20" height="30">&nbsp;</td>
               </tr>
