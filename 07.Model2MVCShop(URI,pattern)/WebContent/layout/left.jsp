@@ -82,7 +82,7 @@ function history(){
 		<table  border="0" cellspacing="0" cellpadding="0" width="159">
 			<tr>
 				<td class="Depth03">
-					<a href="/product/listProduct?menu=manage" target="rightFrame">상 품 검 색</a>
+					<a href="/product/listProduct?menu=search" target="rightFrame">상 품 검 색</a>
 				</td>
 			</tr>
 			

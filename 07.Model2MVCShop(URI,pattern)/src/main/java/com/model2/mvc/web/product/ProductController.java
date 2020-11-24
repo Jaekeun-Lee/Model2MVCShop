@@ -131,6 +131,7 @@ public class ProductController {
 		Cookie[] cookies = request.getCookies();
 		String history = "";
 		String prodNo = request.getParameter("prodNo");
+		System.out.println("============"+prodNo);
 		for (Cookie cookie : cookies) {
 			if (cookie.getName().equals("history")) {
 				if (cookie.getValue().contains(prodNo)) {
@@ -141,9 +142,10 @@ public class ProductController {
 			} else {
 				history = prodNo + ",";
 			}
-			cookie = new Cookie("history", history);
-			response.addCookie(cookie);
 		}
+		
+		System.out.println("===========history"+history);
+		response.addCookie(new Cookie("history", history));
 	}
 
 }
