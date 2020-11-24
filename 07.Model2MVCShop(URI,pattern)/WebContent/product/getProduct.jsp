@@ -130,10 +130,10 @@
 				
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
 					<c:if test="${ empty menu }">
-						<a href="/product/updateProduct/${ product.prodNo }">수정</a>
+						<a href="/product/updateProduct?prodNo=${ product.prodNo }">수정</a>
 					</c:if>
 					<c:if test="${ !empty menu }">
-						<a href="/addPurchaseView.do?prodNo=${ product.prodNo }">구매</a>
+						<a href="/purchase/addPurchaseView?prodNo=${ product.prodNo }">구매</a>
 					</c:if> 
 				</td>
 				<td width="14" height="23">
@@ -146,7 +146,7 @@
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
 					<c:if test="${ empty menu }">
-						<a href="/product/listProduct/manage">완료</a>
+						<a href="/product/listProduct?menu=manage">완료</a>
 					</c:if>
 					<c:if test="${ !empty menu }">
 						<a href="javascript:history.go(-1)">이전</a>

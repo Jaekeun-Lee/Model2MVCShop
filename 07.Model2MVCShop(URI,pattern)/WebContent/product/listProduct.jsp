@@ -48,7 +48,7 @@
 
 	<div style="width: 98%; margin-left: 10px;">
 
-		<form name="detailForm" action="/product/listProduct/${menu}" method="post">
+		<form name="detailForm" action="/product/listProduct?menu=${menu}" method="post">
 
 			<table width="100%" height="37" border="0" cellpadding="0"
 				cellspacing="0">
@@ -154,7 +154,7 @@
 							<td align="left">
 								<c:choose>
 									<c:when test="${ product.proTranCode eq '0' }">
-										<a href="/product/${ menu eq 'manage' ? 'updateProduct' : 'getProduct/search'}/${ product.prodNo }">${ product.prodName }</a>
+										<a href="/product/${ menu eq 'manage' ? 'updateProduct' : 'getProduct'}?prodNo=${ product.prodNo }&menu=${menu}">${ product.prodName }</a>
 									</c:when>
 									<c:otherwise>
 										${ product.prodName }
@@ -174,7 +174,7 @@
 									</c:when>
 									<c:when test="${ product.proTranCode eq '1' }">
 										결제완료
-										<a href="updateTranCodeByProd.do?prodNo=${ product.prodNo }&tranCode=2&currentPage=${resultPage.currentPage}">배송하기</a>
+										<a href="/purchase/updateTranCodeByProd?prodNo=${ product.prodNo }&tranCode=2&currentPage=${resultPage.currentPage}">배송하기</a>
 									</c:when>
 									<c:when test="${ product.proTranCode eq '2' }">
 										배송중

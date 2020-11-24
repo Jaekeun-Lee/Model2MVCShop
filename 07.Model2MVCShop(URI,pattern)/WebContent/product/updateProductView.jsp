@@ -36,7 +36,7 @@ function fncUpdateProduct(){
 		return;
 	}
 		
-	document.detailForm.action='/product/updateProduct/${ product.prodNo }';
+	document.detailForm.action='/product/updateProduct?prodNo=${ product.prodNo }';
 	document.detailForm.submit();
 }
 

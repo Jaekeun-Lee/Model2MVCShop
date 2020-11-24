@@ -10,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model2.mvc.common.Page;
@@ -58,8 +57,8 @@ public class ProductController {
 		return new ModelAndView("forward:/product/addProductResult.jsp","product",product);
 	}
 
-	@RequestMapping("listProduct/{menu}")
-	public ModelAndView listProduct(@PathVariable String menu, 
+	@RequestMapping("listProduct")
+	public ModelAndView listProduct(@RequestParam("menu") String menu, 
 									@ModelAttribute("search") Search search)
 			throws Exception {
 
@@ -86,16 +85,16 @@ public class ProductController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value="getProduct/{menu}/{prodNo}" , method = RequestMethod.GET)
-	public ModelAndView getProduct( @PathVariable String menu,
-									@PathVariable int prodNo, 
+	@RequestMapping(value="getProduct" , method = RequestMethod.GET)
+	public ModelAndView getProduct( @RequestParam("menu") String menu,
+									@RequestParam("prodNo") int prodNo, 
 									HttpServletRequest request, 
 									HttpServletResponse response) throws Exception {
 
 		System.out.println("getProduct/"+menu);
 
 		Product product = productService.getProduct(prodNo);
-		setCookie(request, response, prodNo);
+		setCookie(request, response);
 		String viewName = menu.equals("manage")?"forward:/product/updateProductView.jsp":"forward:/product/getProduct.jsp";
 		
 		System.out.println("viewName = "+viewName);
@@ -107,16 +106,16 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="updateProduct/{prodNo}" , method = RequestMethod.GET)
-	public ModelAndView updateProduct( @PathVariable int prodNo ) throws Exception {
+	@RequestMapping(value="updateProduct" , method = RequestMethod.GET)
+	public ModelAndView updateProduct( @RequestParam("prodNo") int prodNo ) throws Exception {
 
 		System.out.println("updateProduct/"+prodNo);
 		
 		return new ModelAndView("forward:/product/updateProductView.jsp","product",productService.getProduct(prodNo));
 	}
 	
-	@RequestMapping(value="updateProduct/{prodNo}" , method = RequestMethod.POST)
-	public ModelAndView updateProduct( @ModelAttribute("product") Product product , Model model) throws Exception {
+	@RequestMapping(value="updateProduct" , method = RequestMethod.POST)
+	public ModelAndView updateProduct( @ModelAttribute("product") Product product ) throws Exception {
 		
 		System.out.println("updateProduct : POST");
 		
@@ -127,20 +126,20 @@ public class ProductController {
 		
 	}
 
-	private void setCookie(HttpServletRequest request, HttpServletResponse response,int prodNo) {
+	private void setCookie(HttpServletRequest request, HttpServletResponse response) {
 
 		Cookie[] cookies = request.getCookies();
 		String history = "";
-		String newProdNo = String.valueOf(prodNo);
+		String prodNo = request.getParameter("prodNo");
 		for (Cookie cookie : cookies) {
 			if (cookie.getName().equals("history")) {
-				if (cookie.getValue().contains(newProdNo)) {
+				if (cookie.getValue().contains(prodNo)) {
 					history = cookie.getValue();
 				} else {
-					history = newProdNo + "," + cookie.getValue();
+					history = prodNo + "," + cookie.getValue();
 				}
 			} else {
-				history = newProdNo + ",";
+				history = prodNo + ",";
 			}
 			cookie = new Cookie("history", history);
 			response.addCookie(cookie);
