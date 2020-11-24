@@ -133,7 +133,7 @@
 						<a href="/product/updateProduct/${ product.prodNo }">수정</a>
 					</c:if>
 					<c:if test="${ !empty menu }">
-						<a href="/addPurchaseView.do?prodNo=${ product.prodNo }">구매</a>
+						<a href="/purchase/addPurchase/${ product.prodNo }">구매</a>
 					</c:if> 
 				</td>
 				<td width="14" height="23">

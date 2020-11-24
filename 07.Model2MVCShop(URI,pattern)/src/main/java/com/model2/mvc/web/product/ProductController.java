@@ -131,17 +131,21 @@ public class ProductController {
 
 		Cookie[] cookies = request.getCookies();
 		String history = "";
+		System.out.println("COOKIE"+prodNo);
 		String newProdNo = String.valueOf(prodNo);
 		for (Cookie cookie : cookies) {
 			if (cookie.getName().equals("history")) {
 				if (cookie.getValue().contains(newProdNo)) {
 					history = cookie.getValue();
+					System.out.println("1. -" + history);
 				} else {
-					history = newProdNo + "," + cookie.getValue();
+					history += cookie.getValue();
+					System.out.println("2. -" + history);
 				}
 			} else {
-				history = newProdNo + ",";
+				history += newProdNo + ",";
 			}
+			System.out.println("3. -" +history);
 			cookie = new Cookie("history", history);
 			response.addCookie(cookie);
 		}

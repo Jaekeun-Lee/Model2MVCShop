@@ -50,7 +50,7 @@
 		<choose>
 			<when test="orderCondition == 3">price DESC</when>
 			<when test="orderCondition == 4">price</when>
-			<otherwise>pd.prod_no</otherwise>
+			<otherwise>pd.prod_no DESC</otherwise>
 		</choose>
 		) rn, pd.prod_no, pd.prod_name, pd.price, pd.reg_date, TRIM(NVL(ts.tran_status_code,0)) tran_code, COUNT(*)OVER() count 
 		FROM product pd, transaction ts

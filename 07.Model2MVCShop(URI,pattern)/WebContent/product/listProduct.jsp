@@ -174,7 +174,7 @@
 									</c:when>
 									<c:when test="${ product.proTranCode eq '1' }">
 										결제완료
-										<a href="updateTranCodeByProd.do?prodNo=${ product.prodNo }&tranCode=2&currentPage=${resultPage.currentPage}">배송하기</a>
+										<a href="/purchase/updateTranCodeByProd/${ product.prodNo }/2">배송하기</a>
 									</c:when>
 									<c:when test="${ product.proTranCode eq '2' }">
 										배송중

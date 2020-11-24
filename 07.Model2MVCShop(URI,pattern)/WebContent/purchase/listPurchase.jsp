@@ -21,7 +21,7 @@
 
 	<div style="width: 98%; margin-left: 10px;">
 
-		<form name="detailForm" action="/listPurchase.do" method="post">
+		<form name="detailForm" action="/purchase/listPurchase" method="post">
 
 			<table width="100%" height="37" border="0" cellpadding="0"
 				cellspacing="0">
@@ -81,11 +81,11 @@
 						<tr class="ct_list_pop"> 
 							<c:set var="i" value="${ i+1 }"/>
 							<td align="center">
-								<a href="/getPurchase.do?tranNo=${purchase.tranNo }">${i }</a>
+								<a href="/purchase/getPurchase/${purchase.tranNo}">${i}</a>
 							</td>
 							<td></td>
 							<td align="left">
-								<a href="/getUser.do?userId=${ user.userId }">${ user.userId }</a>
+								<a href="/user/getUser/${ user.userId }">${ user.userId }</a>
 							</td>
 							<td></td>
 							<td align="left">
@@ -112,7 +112,7 @@
 							<td></td>
 							<td align="left">
 								<c:if test="${ purchase.tranCode eq '2' }">
-									<a href="updateTranCode.do?tranNo=${ purchase.tranNo }&tranCode=3">물건 도착(수령 확인)</a>
+									<a href="/purchase/updateTranCode/${ purchase.tranNo }/3/">물건 도착(수령 확인)</a>
 								</c:if>
 							</td>
 						</tr>
