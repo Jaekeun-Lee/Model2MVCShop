@@ -20,9 +20,6 @@ public class UserDaoImpl implements UserDao{
 	@Autowired
 	@Qualifier("sqlSessionTemplate")
 	private SqlSession sqlSession;
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
 	
 	///Constructor
 	public UserDaoImpl() {

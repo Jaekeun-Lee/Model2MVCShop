@@ -48,7 +48,8 @@ public class RestHttpClientApp {
 		
 //		RestHttpClientApp.updateTest_Codehaus();
 //		RestHttpClientApp.addTest_Codehaus();
-		RestHttpClientApp.userListTest_Codehaus();
+//		RestHttpClientApp.userListTest_Codehaus();
+		RestHttpClientApp.checkDuplication_Codehaus();
 	}
 	
 	
@@ -330,9 +331,15 @@ public class RestHttpClientApp {
 		httpPost.setHeader("Accept", "application/json");
 		httpPost.setHeader("Content-Type", "application/json");
 		
+		//메뉴클릭시
 		JSONObject json = new JSONObject();
-		json.put("currentPage", new Integer(1));
-		json.put("pageSize", new Integer(3));
+		json.put("currentPage", 0);
+		
+		
+//		//페이지 클릭시
+//		JSONObject json = new JSONObject();
+//		json.put("currentPage", new Integer(1));
+//		json.put("pageSize", new Integer(3));
 		
 		System.out.println("@@@@"+json);
 		HttpEntity httpEntity01 = new StringEntity(json.toString(),"utf-8");
@@ -377,4 +384,41 @@ public class RestHttpClientApp {
 		//System.out.println("::::"+user);
 	}	
 	
+	public static void checkDuplication_Codehaus() throws Exception{
+		
+		HttpClient httpClient = new DefaultHttpClient();
+		
+		String url = "http://127.0.0.1:8080/user/json/checkDuplication";
+		HttpPost httpPost = new HttpPost(url);
+		httpPost.setHeader("Accept", "application/json");
+		httpPost.setHeader("Content-Type", "application/json");
+		
+		JSONObject json = new JSONObject();
+		//json.put("userId", "jack");
+		json.put("userId", "qwer");
+		System.out.println("@@@@"+json);
+		HttpEntity httpEntity01 = new StringEntity(json.toString(),"utf-8");
+		
+		httpPost.setEntity(httpEntity01);
+		HttpResponse httpResponse = httpClient.execute(httpPost);
+		
+		//==> Response 확인
+		System.out.println(httpResponse);
+		System.out.println();
+		
+		//==> Response 중 entity(DATA) 확인
+		HttpEntity httpEntity = httpResponse.getEntity();
+		
+		//==> InputStream 생성
+		InputStream is = httpEntity.getContent();
+		BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+		
+		//==> API 확인 : Stream 객체를 직접 전달 
+		JSONObject jsonobj = (JSONObject)JSONValue.parse(br);
+		System.out.println(jsonobj);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		boolean result = objectMapper.readValue(jsonobj.get("result").toString(), boolean.class);
+		System.out.println("::::"+result);
+	}	
 }

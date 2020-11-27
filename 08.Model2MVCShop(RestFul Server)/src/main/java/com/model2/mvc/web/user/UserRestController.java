@@ -1,15 +1,19 @@
 package com.model2.mvc.web.user;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model2.mvc.common.Search;
@@ -21,6 +25,11 @@ import com.model2.mvc.service.user.UserService;
 @RestController
 @RequestMapping("/user/*")
 public class UserRestController {
+	
+	@Value("#{commonProperties['pageUnit']}")
+	int pageUnit;
+	@Value("#{commonProperties['pageSize']}")
+	int pageSize;
 	
 	///Field
 	@Autowired
@@ -81,14 +90,39 @@ public class UserRestController {
 	
 	@RequestMapping( value="json/list")
 	public Map list(@RequestBody Search search) throws Exception {
+		
 		System.out.println("/user/json/list : POST");
+		if(search.getCurrentPage() == 0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
 		
 		return userService.getUserList(search);
 	}
 	
+	@RequestMapping( value="json/checkDuplication", method=RequestMethod.POST )
+	public Map checkDuplication(@RequestBody User user) throws Exception{
+		
+		System.out.println("/user/json/checkDuplication : POST");
+		System.out.println("RequestBody = "+user);
+		boolean result=userService.checkDuplication(user.getUserId());
+
+		Map map = new HashMap();
+		map.put("result", result);
+		return map;
+	}
 	
-	
-	
+	@RequestMapping( value="json/checkDuplication/{userId}", method=RequestMethod.GET )
+	public Map checkDuplication(@PathVariable String userId) throws Exception{
+		
+		System.out.println("/user/json/checkDuplication : GET");
+		System.out.println("userId = "+userId);
+		boolean result=userService.checkDuplication(userId);
+
+		Map map = new HashMap();
+		map.put("result", result);
+		return map;
+	}
 	
 	
 	
