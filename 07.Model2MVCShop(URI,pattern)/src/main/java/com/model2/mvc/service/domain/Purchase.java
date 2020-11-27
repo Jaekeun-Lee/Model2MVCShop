@@ -11,6 +11,7 @@ public class Purchase {
 	private Date orderDate;
 	private String paymentOption;
 	private Product purchaseProd;
+	private String prodName;
 	private String receiverName;
 	private String receiverPhone;
 	private String tranCode;
@@ -77,6 +78,14 @@ public class Purchase {
 		this.purchaseProd = purchaseProd;
 	}
 
+	public String getProdName() {
+		return prodName;
+	}
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+
 	public String getReceiverName() {
 		return receiverName;
 	}
@@ -134,6 +143,8 @@ public class Purchase {
 		builder.append(paymentOption);
 		builder.append(", purchaseProd=");
 		builder.append(purchaseProd);
+		builder.append(", prodName=");
+		builder.append(prodName);
 		builder.append(", receiverName=");
 		builder.append(receiverName);
 		builder.append(", receiverPhone=");
@@ -147,5 +158,7 @@ public class Purchase {
 		builder.append("]");
 		return builder.toString();
 	}
+
+	
 
 }

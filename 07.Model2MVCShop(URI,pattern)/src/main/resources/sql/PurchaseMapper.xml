@@ -19,6 +19,8 @@
 		<result property="divyDate" column="dlvy_date" jdbcType="DATE"/>
 		<result property="tranCode" column="tran_status_code" jdbcType="VARCHAR"/>
 		<result property="count" column="count" jdbcType="INTEGER"/>
+		<result property="prodName" column="prod_name" jdbcType="VARCHAR"/>
+		
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
@@ -43,9 +45,9 @@
 	<select id="getPurchaseList" parameterType="java.util.List" resultMap="purchaseSelectMap">
 		
 		SELECT purchase.* 
-		FROM ( SELECT ROW_NUMBER() OVER(order by user_id) rn , ts.tran_no, u.user_id, TRIM(NVL(ts.tran_status_code,0)) tran_status_code, COUNT(*)OVER() count 
-			   FROM users u, transaction ts 
-			   WHERE u.user_id = ts.buyer_id AND u.user_id = #{list[1]}) purchase 
+		FROM ( SELECT ROW_NUMBER() OVER(order by user_id) rn , ts.tran_no, pd.prod_name , u.user_id, TRIM(NVL(ts.tran_status_code,0)) tran_status_code, COUNT(*)OVER() count 
+			   FROM users u, transaction ts ,product pd
+			   WHERE pd.prod_no=ts.prod_no AND u.user_id = ts.buyer_id AND u.user_id = #{list[1]}) purchase 
 		WHERE rn BETWEEN #{list[0].startRowNum} AND #{list[0].endRowNum} 
 	
 	</select>

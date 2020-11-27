@@ -34,12 +34,9 @@
 		           </c:if>   
 	          </td>
 	          <td width="14">&nbsp;</td>
-	          <td width="56">
+	          <td width="100%">
 		          <c:if test="${ ! empty user }">
-		          		<!-- //////////////////////////////////////////////////////////////////////////////////// 
-		              <a href="/logout.do" target="_parent">logout</a>
-		              	////////////////////////////////////////////////////////////////////////////////////////// -->
-		            	<a href="/user/logout" target="_parent">logout</a>  
+		            	${ user.userId } 님 환영합니다.   <a href="/user/logout" target="_parent">logout</a>  
 		           </c:if>
 	          </td>
 	        </tr>
