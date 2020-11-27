@@ -1,5 +1,7 @@
 package com.model2.mvc.web.user;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.user.UserService;
 
@@ -61,10 +64,35 @@ public class UserRestController {
 		
 		System.out.println("::"+user);
 		userService.updateUser(user);
-		User user2 = userService.getUser(user.getUserId());
-		System.out.println(user2);
 		
-		return user2;
+		return userService.getUser(user.getUserId());
 		
 	}
+	
+	@RequestMapping( value="json/add", method=RequestMethod.POST )
+	public User add(@RequestBody User user) throws Exception {
+		System.out.println("/user/json/add : POST");
+		
+		System.out.println("::"+user);
+		userService.addUser(user);
+
+		return userService.getUser(user.getUserId());
+	}
+	
+	@RequestMapping( value="json/list")
+	public Map list(@RequestBody Search search) throws Exception {
+		System.out.println("/user/json/list : POST");
+		
+		return userService.getUserList(search);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
