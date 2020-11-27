@@ -101,8 +101,33 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "UserVO : [userId] "+userId+" [userName] "+userName+" [password] "+password+" [role] "+ role
-			+" [ssn] "+ssn+" [phone] "+phone+" [email] "+email+" [regDate] "+regDate;
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [userId=");
+		builder.append(userId);
+		builder.append(", userName=");
+		builder.append(userName);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", role=");
+		builder.append(role);
+		builder.append(", ssn=");
+		builder.append(ssn);
+		builder.append(", phone=");
+		builder.append(phone);
+		builder.append(", addr=");
+		builder.append(addr);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", regDate=");
+		builder.append(regDate);
+		builder.append(", phone1=");
+		builder.append(phone1);
+		builder.append(", phone2=");
+		builder.append(phone2);
+		builder.append(", phone3=");
+		builder.append(phone3);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////

@@ -30,7 +30,7 @@ public class RestHttpClientApp {
 		
 //		System.out.println("\n====================================\n");
 //		// 1.1 Http Get 방식 Request : JsonSimple lib 사용
-		RestHttpClientApp.getUserTest_JsonSimple();
+//		RestHttpClientApp.getUserTest_JsonSimple();
 		
 //		System.out.println("\n====================================\n");
 //		// 1.2 Http Get 방식 Request : CodeHaus lib 사용
@@ -43,7 +43,8 @@ public class RestHttpClientApp {
 //		System.out.println("\n====================================\n");
 //		// 1.2 Http Post 방식 Request : CodeHaus lib 사용
 //		RestHttpClientApp.LoginTest_Codehaus();		
-	
+		
+		RestHttpClientApp.updateTest_Codehaus();
 	}
 	
 	
@@ -231,6 +232,47 @@ public class RestHttpClientApp {
 		ObjectMapper objectMapper = new ObjectMapper();
 		 User user = objectMapper.readValue(jsonobj.toString(), User.class);
 		 System.out.println(user);
+	}	
+	
+	public static void updateTest_Codehaus() throws Exception{
+		
+		HttpClient httpClient = new DefaultHttpClient();
+		
+		String url = "http://127.0.0.1:8080/user/json/update";
+		HttpPost httpPost = new HttpPost(url);
+		httpPost.setHeader("Accept", "application/json");
+		httpPost.setHeader("Content-Type", "application/json");
+		
+		JSONObject json = new JSONObject();
+		json.put("userId", "jack");
+		json.put("userName", "이재근수정");
+		json.put("phone","010-4773-1681");
+		json.put("addr", "경기동탄");
+		
+		System.out.println("@@@@@@@@@@@@"+json);
+		HttpEntity httpEntity01 = new StringEntity(json.toString(),"utf-8");
+		
+		httpPost.setEntity(httpEntity01);
+		HttpResponse httpResponse = httpClient.execute(httpPost);
+		
+		//==> Response 확인
+		System.out.println(httpResponse);
+		System.out.println();
+		
+		//==> Response 중 entity(DATA) 확인
+		HttpEntity httpEntity = httpResponse.getEntity();
+		
+		//==> InputStream 생성
+		InputStream is = httpEntity.getContent();
+		BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+		
+		//==> API 확인 : Stream 객체를 직접 전달 
+		JSONObject jsonobj = (JSONObject)JSONValue.parse(br);
+		System.out.println(jsonobj);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		User user = objectMapper.readValue(jsonobj.toString(), User.class);
+		System.out.println("asd::::::"+user);
 	}	
 	
 }
