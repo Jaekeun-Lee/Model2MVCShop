@@ -78,7 +78,9 @@
 						<tr> 
 							<td height="26">
 								<c:if test="${!empty product.fileName}">
-									<img src="../images/uploadFiles/${product.fileName}"/>
+									<c:forEach var="file" items="${fileList}">
+										<img src="../images/uploadFiles/${file}"/>
+									</c:forEach>
 								</c:if>
 								<c:if test="${empty product.fileName}">
 								<img src="../images/logo-spring.png"/>

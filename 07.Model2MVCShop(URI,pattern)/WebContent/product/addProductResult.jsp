@@ -63,7 +63,7 @@
 							<td height="26">
 								<c:choose>
 									<c:when test="${!empty product.fileName}">
-										<img src="../images/uploadFiles/${product.fileName}"/>
+										<img src="../images/uploadFiles/${product.fileName[0]}"/>
 									</c:when>
 									<c:otherwise>
 										<img src="../images/logo-spring.png"/>

@@ -1,6 +1,7 @@
 package com.model2.mvc.web.product;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -60,6 +61,22 @@ public class ProductController {
 	public ModelAndView addProduct(@ModelAttribute("product") Product product, MultipartHttpServletRequest request) throws Exception {
 
 		System.out.println(path);
+		System.out.println("addProduct : POST");
+		
+		List<MultipartFile> fileList = request.getFiles("uploadFile");
+		String fileName = "";
+		
+		for(MultipartFile mf : fileList) {
+			fileName += mf.getOriginalFilename()+"/";
+			String saveFile = path+mf.getOriginalFilename();
+			mf.transferTo(new File(saveFile));
+			
+		}
+		
+		product.setFileName(fileName);
+		productService.addProduct(product);
+/*		
+		//단일 업로드
 		Map<String, MultipartFile> files = request.getFileMap();
 		CommonsMultipartFile cmf  = (CommonsMultipartFile) files.get("uploadFile");
 		
@@ -67,17 +84,12 @@ public class ProductController {
 		
 		File file = new File(uploadPath);
 		System.out.println(uploadPath);
-		
 		cmf.transferTo(file);
-		
+			
 		product.setFileName(cmf.getOriginalFilename());
-		/*
-		 * MultipartFile uploadFile = product.getFileName(); if(uploadFile != null) {
-		 * uploadFile.transferTo(new File(path)); }
-		 */
 		System.out.println("addProduct : POST");
 		productService.addProduct(product);
-		
+*/
 		return new ModelAndView("forward:/product/addProductResult.jsp","product",product);
 	}
 
@@ -121,11 +133,15 @@ public class ProductController {
 		setCookie(request, response);
 		String viewName = menu.equals("manage")?"forward:/product/updateProductView.jsp":"forward:/product/getProduct.jsp";
 		
+		
+		String[] fileList = product.getFileName().split("/");
+		
 		System.out.println("viewName = "+viewName);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(viewName);
 		modelAndView.addObject("product", product);
 		modelAndView.addObject("menu",menu);
+		modelAndView.addObject("fileList",fileList);
 		
 		return modelAndView;
 	}
