@@ -35,7 +35,7 @@ function fncAddProduct(){
 		alert("가격은 반드시 입력하셔야 합니다.");
 		return;
 	}
-	$('form').attr("method" , "POST").attr("action" , "/product/addProduct").submit();
+	$("form").attr("method", "POST").attr("action", "/product/addProduct").submit();
 	
 }
  $(function(){
@@ -62,7 +62,7 @@ function fncAddProduct(){
 
 <body bgcolor="#ffffff" text="#000000">
 
-	<form name="detailForm" enctype="multipart/form-data">
+	<form name="detailForm" method="post" commandName="simpleUploadForm" enctype="multipart/form-data">
 
 		<table width="100%" height="37" border="0" cellpadding="0"
 			cellspacing="0">
