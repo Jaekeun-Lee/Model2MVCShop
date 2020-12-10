@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation=
+				"http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans/spring-beans.xsd
+				
+				http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context.xsd
+				
+				http://www.springframework.org/schema/mvc
+				http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+	<context:component-scan base-package="com.model2.mvc.web">
+		<context:include-filter 	type="annotation"		expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter 	type="annotation" 	expression="org.springframework.stereotype.Service"/>
+		<context:exclude-filter 	type="annotation" 	expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan> 
+   	
+	<mvc:annotation-driven />
+	
+   	<mvc:interceptors>
+		
+   		<mvc:interceptor>
+			<mvc:mapping path="/user/**"/>
+			<mvc:mapping path="/purchase/**"/>
+			<bean class="com.model2.mvc.common.web.LogonCheckInterceptor" />
+   		</mvc:interceptor>
+
+   	</mvc:interceptors>
+
+
+    <bean id="viewResolver"
+				class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>
+
+	<!-- <mvc:resources mapping="/resources/**" location="/resources/" /> --> 
+	<mvc:resources mapping="/css/**" location="/css/" />
+   	<mvc:resources mapping="/images/**" location="/images/" />
+   	<mvc:resources mapping="/javascript/**" location="/javascript/" />
+   	
+
+	<bean id="exceptionResolver"
+				class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.NullPointerException">/common/nullError.jsp</prop>
+				<prop key="java.lang.NumberFormatException">/common/numberFormatError.jsp</prop>
+			</props>
+		</property>
+		
+		<property name="defaultErrorView"	value="/common/error.jsp" />
+		
+	</bean>
+	
+</beans>
