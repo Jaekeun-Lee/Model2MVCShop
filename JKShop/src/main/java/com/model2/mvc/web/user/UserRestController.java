@@ -39,8 +39,7 @@ public class UserRestController {
 	}
 
 	@RequestMapping( value="json/login", method=RequestMethod.POST )
-	public User login(	@RequestBody User user,
-									HttpSession session ) throws Exception{
+	public User login(	@RequestBody User user, HttpSession session ) throws Exception{
 	
 		System.out.println("/user/json/login : POST");
 		//Business Logic

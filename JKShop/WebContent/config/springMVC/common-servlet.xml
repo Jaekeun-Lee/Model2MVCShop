@@ -53,6 +53,11 @@
 				class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
 	
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>
+	
 	<!--	
 		■ / 형식의 Mapping 은 모든(정적,동적 자원) 요청시 처리책임
 		■ 정적자원 요청시 DispatcherServlet 에게 처리방법지정
@@ -68,7 +73,7 @@
    	
 
 	<!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리 
-			:: Servlet 에서의 선언적 예외처리를 다시 생각하며....  -->
+			:: Servlet 에서의 선언적 예외처리를 다시 생각하며.... 
 	<bean id="exceptionResolver"
 				class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		
@@ -82,5 +87,5 @@
 		<property name="defaultErrorView"	value="/common/error.jsp" />
 		
 	</bean>
-	
+	 -->
 </beans>

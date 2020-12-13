@@ -3,13 +3,9 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 
 <html>
-<head>
 
-<title>열어본 상품 보기</title>
-
-</head>
 <body>
-	당신이 열어본 상품을 알고 있다
+	최근 본 상품
 <br>
 <br>
 <%

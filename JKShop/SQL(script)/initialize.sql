@@ -9,7 +9,7 @@ DROP SEQUENCE seq_transaction_tran_no;
 
 CREATE SEQUENCE seq_product_prod_no		 	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_transaction_tran_no	INCREMENT BY 1 START WITH 10000;
-
+CREATE SEQUENCE seq_home_mainimage_no		INCREMENT BY 1 START WITH 1;
 
 CREATE TABLE users ( 
 	user_id 			VARCHAR2(20)	NOT NULL,
@@ -49,6 +49,12 @@ CREATE TABLE transaction (
 	order_data 			DATE,
 	dlvy_date 				DATE,
 	PRIMARY KEY(tran_no)
+);
+
+CREATE TABLE mainimage ( 
+	image_no 					NUMBER 			NOT NULL,
+	file_name 					VARCHAR2(100)	NOT NULL,	
+	PRIMARY KEY(image_no)
 );
 
 

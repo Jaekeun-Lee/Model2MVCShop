@@ -33,7 +33,7 @@
 						<li>
 							<a href="/home/" class="logo">
 								<img class="logo" src="../images/logo.png"> 
-								</a>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -50,11 +50,11 @@
 								
 							</li>
 						
-						<li>
-							<a href="/purchase/listPurchase">
-								<img class="cart" src="../images/icon/icon_top_cart.png"> 
-							</a>
-						</li>
+							<li>
+								<a href="/purchase/listPurchase">
+									<img class="cart" src="../images/icon/icon_top_cart.png"> 
+								</a>
+							</li>
 						</c:if>
 					</ul>
 					
@@ -103,7 +103,7 @@
 				                </a>
 				                <ul class="dropdown-menu">
 				                	<li>
-				                		<a href="#">개인정보조회</a>
+				                		<a href="/user/getUser?userId=${user.userId}">개인정보조회</a>
 			                		</li>
 				                         
 		                        	<li><a href="#">회원정보조회</a></li>
@@ -121,8 +121,8 @@
 										<span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a href="#">판매상품등록</a></li>
-										<li><a href="#">판매상품관리</a></li>
+										<li><a href="/product/addProduct">판매상품등록</a></li>
+										<li><a href="/product/listProduct?menu=manage&currentPage=1">판매상품관리</a></li>
 										<li class="divider"></li>
 										<li><a href="#">etc..</a></li>
 				                    </ul>
@@ -137,7 +137,7 @@
 				                </a>
 				                <ul class="dropdown-menu">
 				                	<li>
-				                		<a href="#">상 품 검 색</a>
+				                		<a href="/product/listProduct?menu=search&currentPage=1">상 품 검 색</a>
 			                		</li>
 				                         
 				                	<c:if test="${sessionScope.user.role == 'user'}">
@@ -157,7 +157,6 @@
 				             
 			            <ul class="nav navbar-nav navbar-right">
 			            	<li><a href="/user/getUser?userId=${user.userId}">${ user.userId }</a></li>
-			            	<li><a href="#">LOGOUT</a></li>
 			            </ul>
 				             
 					</div>

@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model2.mvc.common.Page;
@@ -62,19 +65,22 @@ public class ProductController {
 		System.out.println(path);
 		System.out.println("addProduct : POST");
 		
+		
+		//다중 업로드
 		List<MultipartFile> fileList = request.getFiles("uploadFile");
 		String fileName = "";
+		
 		
 		for(MultipartFile mf : fileList) {
 			fileName += mf.getOriginalFilename()+"/";
 			String saveFile = path+mf.getOriginalFilename();
 			mf.transferTo(new File(saveFile));
-			
 		}
 		
 		product.setFileName(fileName);
 		productService.addProduct(product);
-/*		
+		
+/*
 		//단일 업로드
 		Map<String, MultipartFile> files = request.getFileMap();
 		CommonsMultipartFile cmf  = (CommonsMultipartFile) files.get("uploadFile");

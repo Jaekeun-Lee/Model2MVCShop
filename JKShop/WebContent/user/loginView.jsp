@@ -1,133 +1,104 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR"%>
-
-
-<!DOCTYPE html>
-
-<html lang="ko">
-	
+<%@ page contentType="text/html; charset=euc-kr" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
-	<meta charset="EUC-KR">
-	
-	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
-	<!--  ///////////////////////// CSS ////////////////////////// -->
-	<style>
-    	 body >  div.container{ 
-        	border: 3px solid #D6CDB7;
-            margin-top: 10px;
-        }
-    </style>
-    
-    <!--  ///////////////////////// JavaScript ////////////////////////// -->
-	<script type="text/javascript">
+<title>Login</title>
 
-		//============= "로그인"  Event 연결 =============
-		$( function() {
-			
-			$("#userId").focus();
-			
-			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("button").on("click" , function() {
-				var id=$("input:text").val();
-				var pw=$("input:password").val();
-				
-				if(id == null || id.length <1) {
-					alert('ID 를 입력하지 않으셨습니다.');
-					$("#userId").focus();
-					return;
-				}
-				
-				if(pw == null || pw.length <1) {
-					alert('패스워드를 입력하지 않으셨습니다.');
-					$("#password").focus();
-					return;
-				}
-				
-				$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
-			});
-		});	
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- 웹 폰트 -->
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
+	  rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script"
+	  rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Abel"
+	  rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
+	  rel="stylesheet">
+	  
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#userId").focus()
 		
-		
-		//============= 회원원가입화면이동 =============
-		$( function() {
-			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("a[href='#' ]").on("click" , function() {
-				self.location = "/user/addUser"
-			});
+		$("input.submit").on("click",function(){
+			fncLogin();
 		});
 		
-	</script>		
+		$(".signup").on("click",function(){
+			self.location='/user/addUser'
+		})
+		
+	});
 	
+	function fncLogin() {
+		var id=$("#userId").val();
+		var pw=$("#password").val();
+		if(id == null || id.length <1) {
+			alert('ID 를 입력해주세요.');
+			$("#userId").focus();
+			return;
+		}
+		
+		if(pw == null || pw.length <1) {
+			alert('비밀번호를 입력해주세요');
+			$("#password").focus();
+			return;
+		}
+	    $("#login").submit();
+	    
+	}
+	
+</script>
+
 </head>
 
 <body>
 
-	<!-- ToolBar Start /////////////////////////////////////-->
-	<div class="navbar  navbar-default">
-        <div class="container">
-        	<a class="navbar-brand" href="/index.jsp">Model2 MVC Shop</a>
-   		</div>
-   	</div>
-   	<!-- ToolBar End /////////////////////////////////////-->	
-	
-	<!--  화면구성 div Start /////////////////////////////////////-->
-	<div class="container">
-		<!--  row Start /////////////////////////////////////-->
-		<div class="row">
-		
-			<div class="col-md-6">
-					<img src="/images/logo-spring.png" class="img-rounded" width="100%" />
-			</div>
-	   	 	
-	 	 	<div class="col-md-6">
-	 	 	
-		 	 	<br/><br/>
+	<div id="nav">
+		<jsp:include page="../common/nav.jsp" />
+	</div>
+
+	<div class="layer">
+		<div id="login_box">
+			<h3 class="l_title">LOGIN</h3>
+			<form id="login" name="loginForm" action="/user/login" method="post">
+				<input type="text" class="input_box" id="userId" name="userId" placeholder="아이디" required>
+				<input type="password" class="input_box" id="password" name="password" autocomplete="new-password" placeholder="비밀번호" required>
+				<input type="submit" class="submit" value="로그인">
 				
-				<div class="jumbotron">	 	 	
-		 	 		<h1 class="text-center">로 &nbsp;&nbsp;그 &nbsp;&nbsp;인</h1>
-
-			        <form class="form-horizontal">
-		  
-					  <div class="form-group">
-					    <label for="userId" class="col-sm-4 control-label">아 이 디</label>
-					    <div class="col-sm-6">
-					      <input type="text" class="form-control" name="userId" id="userId"  placeholder="아이디" >
-					    </div>
-					  </div>
-					  
-					  <div class="form-group">
-					    <label for="password" class="col-sm-4 control-label">패 스 워 드</label>
-					    <div class="col-sm-6">
-					      <input type="password" class="form-control" name="password" id="password" placeholder="패스워드" >
-					    </div>
-					  </div>
-					  
-					  <div class="form-group">
-					    <div class="col-sm-offset-4 col-sm-6 text-center">
-					      <button type="button" class="btn btn-primary"  >로 &nbsp;그 &nbsp;인</button>
-					      <a class="btn btn-primary btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
-					    </div>
-					  </div>
-			
-					</form>
-			   	 </div>
-			
+				<div class="find">
+					<a href="#">아이디 찾기</a>
+					<span class="space">|</span>
+					<a href="#">비밀번호 찾기</a>
+				</div>
+			</form>
+            <!-- <c:if test="${not empty ERRORMSG }">
+				<font color="red">
+					<p>Your login attempt was not successful due to <br/>
+					${ERRORMSG}</p>
+				</font>
+			</c:if>	 -->
+		</div>
+		
+		<div class="signUp_box">
+			<h3 class="l_title">Join</h3>
+			<div class="text_wrap">
+				<p class="text01">아직도 회원이 아니신가요?</p>
+				<p class="text02">회원가입을 하시면 회원에게만 제공되는 <br/>다양한 혜택과 이벤트에 참여하실 수 있어요.<br/>회원만의 다양한 혜택을 누려보세요!</p>
+			</div>
+			<div class="signup">
+				<a href="/user/addUser">회원가입</a>
 			</div>
 			
-  	 	</div>
-  	 	<!--  row Start /////////////////////////////////////-->
-  	 	
- 	</div>
- 	<!--  화면구성 div end /////////////////////////////////////-->
 
+			<!-- 하단 공통 로그인배너 
+            <div class="login_banner"><a href="#"><img src="" alt=""/></a></div>
+			<!-- //하단 공통 로그인배너 -->
+		</div>
+	</div>
+	
+	
 </body>
-
 </html>

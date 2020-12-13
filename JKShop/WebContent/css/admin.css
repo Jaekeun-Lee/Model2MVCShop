@@ -89,7 +89,7 @@ select {border:1x solid #ADAEAD; color:#777777; background-color:#ffffff; font-f
 .ct_list_pop A:visited {font-size: 9pt; color: #666666; text-decoration: underline; font-family:"µ¸¿ò", "±¼¸²"}
 .ct_list_pop A:active  {font-size: 9pt; color: #666666; text-decoration: underline; font-family:"µ¸¿ò", "±¼¸²"}
 .ct_list_pop A:hover   {font-size: 9pt; color: #000000; text-decoration: underline; font-family:"µ¸¿ò", "±¼¸²"}
-
+.con { padding:15px; text-align: center;}
 
 .ct_list_no          {font-size: 9pt; color: #666666; font-family:"µ¸¿ò", "±¼¸²";}
 .ct_list_no A:link    {font-size: 9pt; color: #666666; text-decoration: none; font-family:"µ¸¿ò", "±¼¸²"}

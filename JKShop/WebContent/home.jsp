@@ -40,39 +40,14 @@
 			<!-- 이미지 슬라이드 -->
 			<div id="mainImg">
 				<div class="slider">
-	 				<div>
-						<figure>
-							<img src="../images/mainImage1.jpg" alt="이미지1">
-						</figure>
-					</div>
-					<div>
-						<figure>
-							<img src="../images/mainImage2.jpg" alt="이미지2">
-						</figure>
-					</div>
-					<div>
-						<figure>
-							<img src="../images/mainImage3.jpg" alt="이미지3">
-						</figure>
-					</div>
-					<div>
-						<figure>
-							<img src="../images/mainImage4.jpg" alt="이미지4">
-						</figure>
-					</div>
-					<div>
-						<figure>
-							<img src="../images/Maingif.gif" alt="이미지5">
-						</figure>
-					</div>	 
-					<div>
-						<figure>
-							<img src="../images/mainImage3.jpg" alt="이미지6">
-							<figcaption>
-								<em>Main Image 6</em> <span>6.1 main image sub</span>
-							</figcaption>
-						</figure>
-					</div>
+				
+					<c:forEach var="imageList" items="${mainImageList}">
+						<div>
+							<figure>
+								<img src="../images/${imageList.fileName}"/>
+							</figure>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 			<!--//이미지 슬라이드 -->
@@ -82,39 +57,16 @@
 				<article class="column">
 					<h2 class="col_tit">신상품</h2>
 					<p class="col_desc"> Product List ${resultPage.totalCount} </p>
-					
 					<!-- lightbox -->
 					<div class="lightbox square clearfix">
-						<a href="img/light01_s.jpg">
-							<img src="img/light01.jpg" alt="이미지"> 
-							<em>blur</em> 
-						</a> 
-						
-						<a href="img/light02_s.jpg">
-							<img src="img/light02.jpg" alt="이미지"> 
-							<em>brightness</em> 
-						</a> 
-						
-						<a href="img/light03_s.jpg">
-							<img src="img/light03.jpg" alt="이미지">
-							<em>contrast</em> 
-						</a> 
-							
-						<a href="img/light04_s.jpg">
-							<img src="img/light04.jpg" alt="이미지"> 
-							<em>grayscale</em> 
-						</a> 
-							
-						<a href="img/light05_s.jpg">
-							<img src="img/light05.jpg" alt="이미지">
-							<em>hue-rotate</em> 
-						</a> 
-							
-						<a href="img/light06_s.jpg">
-							<img src="img/light06.jpg" alt="이미지"> 
-							<em>invert</em> 
-						</a>
+						<c:forEach var="product" items="${list}">
+							<a href="/images/uploadFiles/${product.fileName}">
+								<img src="/images/uploadFiles/${product.fileName}"/>
+								<em>${product.prodName}</em> 
+							</a>
+						</c:forEach>
 					</div>
+					
 					<!--//lightbox -->
 				</article>
 				<!-- //col5 -->
@@ -158,16 +110,21 @@
 	<script src="https://kit.fontawesome.com/a9d35991b2.js" crossorigin="anonymous"></script>
 	<script>
 	
+	
+	
 		$(function(){
+			
 			$('#followquick').animate({'top':$(document).scrollTop()+200+'px'});
 			//follow quick menu
 			$(window).scroll(function(){
 				$("#followquick").stop();
 				$('#followquick').animate({'top':$(document).scrollTop()+200+'px'},1000);
+				
 			});
+
 		})	
-	
 		
+
 		//접기/펼치기
 		$(window).resize(function() {
 			var wWidth = $(window).width();

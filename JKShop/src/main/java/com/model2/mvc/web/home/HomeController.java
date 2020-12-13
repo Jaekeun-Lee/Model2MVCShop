@@ -1,5 +1,6 @@
 package com.model2.mvc.web.home;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -7,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
+import com.model2.mvc.service.home.HomeService;
 import com.model2.mvc.service.product.ProductService;
 
 @Controller
@@ -22,6 +26,10 @@ public class HomeController {
 	@Autowired
 	@Qualifier("productServiceImpl")
 	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("homeServiceImpl")
+	private HomeService homeService;
 
 	@Value("#{commonProperties['pageUnit'] ?: 6}")
 	int pageUnit;
@@ -29,25 +37,19 @@ public class HomeController {
 	@Value("#{commonProperties['pageSize'] ?: 5}")
 	int pageSize;
 	
-	@Value("#{commonProperties['path']}")
-	String path;
-	
 	public HomeController() {
-		System.out.println(this.getClass());
-		
+		System.out.println(this.getClass()+"Start");
 	}
 	
 	@RequestMapping(value ="/")
 	public ModelAndView getMainList(Search search)
 			throws Exception {
 
-		System.out.println("HomeController Start");
-
-		if (search.getCurrentPage() == 0) {
-			search.setCurrentPage(1);
-		}
+		search.setCurrentPage(1);
 		search.setPageSize(pageSize);
 
+		List<Object> mainImageList = homeService.getMainImageList(pageSize);
+		
 		Map<String, Object> map = productService.getProductList(search);
 		Page resultPage = new Page(search.getCurrentPage(), 
 								   ((Integer) map.get("totalCount")).intValue(),
@@ -56,11 +58,34 @@ public class HomeController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("forward:/home.jsp");
+		modelAndView.addObject("mainImageList",mainImageList);
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("resultPage", resultPage);
 		modelAndView.addObject("search", search);
 
 		return modelAndView;
 	}
+	
+	@RequestMapping(value ="/scroll")
+	public @ResponseBody Map<String, Object> getMainListByScroll(Search search, @RequestBody int page )
+			throws Exception {
 
+		search.setCurrentPage(page);
+		search.setPageSize(pageSize);
+
+		List<Object> mainImageList = homeService.getMainImageList(pageSize);
+		
+		Map<String, Object> map = productService.getProductList(search);
+		Page resultPage = new Page(search.getCurrentPage(), 
+								   ((Integer) map.get("totalCount")).intValue(),
+								   pageUnit,
+								   search.getPageSize());
+		
+		map.put("mainImageList",mainImageList);
+		map.put("list", map.get("list"));
+		map.put("resultPage", resultPage);
+		map.put("search", search);
+
+		return map;
+	}
 }

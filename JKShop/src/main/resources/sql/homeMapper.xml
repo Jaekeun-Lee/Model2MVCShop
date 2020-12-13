@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="homeMapper">
+ 	
+	<resultMap id="homeSelectMap" type="com.model2.mvc.service.domain.Home">
+		<result property="imageNo" column="image_no" jdbcType="NUMERIC"/>
+		<result property="fileName"	column="file_name" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- SQL : INSERT -->
+	<insert id="insertImage" parameterType="home" >
+	 	INSERT
+		INTO mainimage ( image_no , file_name ) 
+		VALUES(	seq_home_mainimage_no.NEXTVAL, #{fileName} )
+	</insert>
+	
+	<select id="getMainImageList" parameterType="int" resultMap="homeSelectMap">
+		SELECT *
+		FROM (
+			SELECT ROWNUM rn, image_no, file_name
+			FROM mainimage
+			ORDER BY image_no DESC
+			)
+		WHERE rn &lt;= #{value}
+	</select>
+	
+	
+</mapper>

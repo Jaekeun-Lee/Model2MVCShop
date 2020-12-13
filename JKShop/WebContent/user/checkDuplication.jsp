@@ -109,7 +109,7 @@
 				<span class="text-success glyphicon glyphicon-ok">사용가능 &nbsp;</span>
 			</c:if>
 			<c:if test="${ result=='false' }">
-		 		<span class="text-danger glyphicon glyphicon-remove">사용불가능</span>
+		 		<span class="text-danger glyphicon glyphicon-remove">이미 사용중인 아이디 입니다.</span>
 			</c:if>
 		  </c:if>
 		 
