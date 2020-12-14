@@ -9,11 +9,11 @@
   <div class="card-body">
     <h4 class="card-title">Quick Menu</h4>
     <p class="card-text">--</p>
-    <p class="card-text">qucik menu</p>
-    <p class="card-text">qucik menu</p>
-    <p class="card-text">qucik menu</p>
-    <p class="card-text">qucik menu</p>
-    <p class="card-text">qucik menu</p>
+    <p class="card-text">최근 본 상품</p>
+    <p class="card-text">상품 목록</p>
+    <p class="card-text">Best 10</p>
+    <p class="card-text">Review List</p>
+    <p class="card-text">맨위로</p>
   </div>
 </div>
 <br>
