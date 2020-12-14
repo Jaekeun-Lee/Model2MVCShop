@@ -5,7 +5,17 @@
 <html>
 
 <body>
-	최근 본 상품
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card-body">
+    <h4 class="card-title">Quick Menu</h4>
+    <p class="card-text">--</p>
+    <p class="card-text">qucik menu</p>
+    <p class="card-text">qucik menu</p>
+    <p class="card-text">qucik menu</p>
+    <p class="card-text">qucik menu</p>
+    <p class="card-text">qucik menu</p>
+  </div>
+</div>
 <br>
 <br>
 <%
@@ -28,6 +38,7 @@
 <a href="/getProduct.do?prodNo=<%=h[i]%>&menu=search"
 	target="rightFrame"><%=h[i]%></a>
 <br>
+
 <%
 				}
 			}

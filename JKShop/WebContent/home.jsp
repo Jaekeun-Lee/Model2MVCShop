@@ -56,7 +56,7 @@
 			<div class="container">
 				<article class="column">
 					<h2 class="col_tit">Ω≈ªÛ«∞</h2>
-					<p class="col_desc"> Product List ${resultPage.totalCount} </p>
+					<p id="golist"class="col_desc"> Product List ${resultPage.totalCount} </p>
 					<!-- lightbox -->
 					<div class="lightbox square clearfix">
 						<c:set var="i" value="0" />
@@ -127,6 +127,10 @@
 			$(".pic").on("click", function() {
 				var prodNo = $(this).attr('id')
 				self.location='http://localhost:8080/product/getProduct?prodNo='+prodNo+'&menu=search'
+			});
+			
+			$("#golist").on("click", function() {
+				self.location='http://localhost:8080/product/listProduct?menu=search&currentPage=1'
 			});
 
 		})	
