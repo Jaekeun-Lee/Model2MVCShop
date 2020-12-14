@@ -9,6 +9,10 @@
 <title>상품 목록조회</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="stylesheet" href="/css/reset.css" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
@@ -45,8 +49,8 @@
 		if ((window.innerHeight + window.scrollY) + 100 >= document.body.offsetHeight) {
 			//실행할 로직 (콘텐츠 추가)
 			count++;
-			var addContent = '<tr><td id="num" align="center">1</td></tr>'				
-			$('.ct_list_pop').after(addContent);
+			var addContent = '<p>'+count+'번 째 추가 테스트</p>'				
+			$('form').append(addContent);
 		}
 	};
 
@@ -96,8 +100,8 @@
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
-
-	<div style="width: 98%; margin-left: 10px;">
+	<jsp:include page="../common/nav.jsp"></jsp:include>
+	<div style="width: 98%; margin-top:200px; margin-left: 10px;">
 
 		<form name="detailForm" action="/product/listProduct?menu=${menu}"
 			method="post">
@@ -111,7 +115,9 @@
 						style="padding-left: 10px;">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td width="93%" class="ct_ttl01">${ menu eq 'manage' ? '상품관리': '상품검색'}
+								<!-- <td width="93%" class="ct_ttl01">${ menu eq 'manage' ? '상품관리': '상품검색'}
+								 -->
+								<Strong>Category List</Strong>
 								</td>
 							</tr>
 						</table>
@@ -173,7 +179,7 @@
 				<tr>
 					<td class="ct_list_b" width="100">No</td>
 					<td class="ct_line02"></td>
-					<td class="ct_list_b">등록일</td>
+					<td class="ct_list_b"></td>
 					<td class="ct_line02"></td>
 					<td class="ct_list_b" width="150">상품명</td>
 					<td class="ct_line02"></td>
@@ -203,7 +209,7 @@
 							<td></td>
 							<td class="con" align="left"><a
 								href="/product/${ menu eq 'manage' ? 'updateProduct' : 'getProduct'}?prodNo=${ product.prodNo }&menu=${menu}">
-									<img style="width: 100px; height: 130px;"
+									<img style="width: 120px; height: 150px;"
 									src="../images/uploadFiles/${product.fileName}" />
 							</a></td>
 							<td></td>

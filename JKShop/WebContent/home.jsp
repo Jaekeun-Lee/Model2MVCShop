@@ -59,8 +59,10 @@
 					<p class="col_desc"> Product List ${resultPage.totalCount} </p>
 					<!-- lightbox -->
 					<div class="lightbox square clearfix">
+						<c:set var="i" value="0" />
 						<c:forEach var="product" items="${list}">
-							<a href="/images/uploadFiles/${product.fileName}">
+							<c:set var="i" value="${ i+1 }" />
+							<a class="pic" id="${ product.prodNo }" href="/product/getProduct?prodNo=${ product.prodNo }&menu=search">
 								<img src="/images/uploadFiles/${product.fileName}"/>
 								<em>${product.prodName}</em> 
 							</a>
@@ -120,6 +122,11 @@
 				$("#followquick").stop();
 				$('#followquick').animate({'top':$(document).scrollTop()+200+'px'},1000);
 				
+			});
+			
+			$(".pic").on("click", function() {
+				var prodNo = $(this).attr('id')
+				self.location='http://localhost:8080/product/getProduct?prodNo='+prodNo+'&menu=search'
 			});
 
 		})	

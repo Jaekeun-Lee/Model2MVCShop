@@ -106,7 +106,7 @@
 				                		<a href="/user/getUser?userId=${user.userId}">개인정보조회</a>
 			                		</li>
 				                         
-		                        	<li><a href="#">회원정보조회</a></li>
+		                        	<li><a href="/user/listUser">회원정보조회</a></li>
 				                         
 				                    <li class="divider"></li>
 				                    	<li><a href="#">etc...</a>
